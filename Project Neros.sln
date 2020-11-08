@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project Neros", "Project Neros.csproj", "{31A7BF4F-2A72-4134-A6C6-E6DAF106C9D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31A7BF4F-2A72-4134-A6C6-E6DAF106C9D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31A7BF4F-2A72-4134-A6C6-E6DAF106C9D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31A7BF4F-2A72-4134-A6C6-E6DAF106C9D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31A7BF4F-2A72-4134-A6C6-E6DAF106C9D6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1D533C2A-3312-42D1-AEB0-0267410701A4}
+	EndGlobalSection
+EndGlobal
