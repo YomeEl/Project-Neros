@@ -19,7 +19,7 @@ namespace Project_Neros.Game.UI.Actors
             {
                 new Engine.Command()
                 {
-                    type = Engine.CommandType.Quit
+                    type = Engine.CommandType.StartNew
                 }
             };
             var button = new Button(win, sprite, hoverSprite, commands);
