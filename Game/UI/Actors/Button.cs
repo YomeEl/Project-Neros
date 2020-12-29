@@ -1,7 +1,7 @@
 ﻿using Project_Neros.Engine;
+
 using SFML.Graphics;
 using SFML.System;
-using System.Collections.Generic;
 
 namespace Project_Neros.Game.UI.Actors
 {
@@ -41,9 +41,9 @@ namespace Project_Neros.Game.UI.Actors
             return bounds;
         }
 
-        public Queue<ICommand> OnClick()
+        public ICommand[] OnClick()
         {
-            throw new System.NotImplementedException();
+            return commands;
         }
     }
 }
