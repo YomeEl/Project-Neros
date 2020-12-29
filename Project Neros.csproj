@@ -62,7 +62,7 @@
   <ItemGroup>
     <Compile Include="Engine\Camera.cs" />
     <Compile Include="Engine\IActor.cs" />
-    <Compile Include="Engine\ICommand.cs" />
+    <Compile Include="Engine\Command.cs" />
     <Compile Include="Engine\Logger.cs" />
     <Compile Include="Engine\Scene.cs" />
     <Compile Include="Game\Controller.cs" />
