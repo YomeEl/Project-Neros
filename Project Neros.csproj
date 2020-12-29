@@ -35,19 +35,19 @@
   <ItemGroup>
     <Reference Include="sfml-audio, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\sfml-audio.dll</HintPath>
+      <HintPath>SFML\sfml-audio.dll</HintPath>
     </Reference>
     <Reference Include="sfml-graphics, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\sfml-graphics.dll</HintPath>
+      <HintPath>SFML\sfml-graphics.dll</HintPath>
     </Reference>
     <Reference Include="sfml-system, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\sfml-system.dll</HintPath>
+      <HintPath>SFML\sfml-system.dll</HintPath>
     </Reference>
     <Reference Include="sfml-window, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\sfml-window.dll</HintPath>
+      <HintPath>SFML\sfml-window.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
