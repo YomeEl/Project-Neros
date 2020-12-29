@@ -14,9 +14,9 @@ namespace Project_Neros.Game.UI.Actors
         private readonly RenderWindow win;
         private readonly Sprite sprite;
         private readonly Sprite hoverSprite;
-        private readonly ICommand[] commands;
+        private readonly Command[] commands;
 
-        public Button(RenderWindow win, Sprite sprite, Sprite hoverSprite, ICommand[] commands)
+        public Button(RenderWindow win, Sprite sprite, Sprite hoverSprite, Command[] commands)
         {
             this.win = win;
             this.sprite = sprite;
@@ -41,7 +41,7 @@ namespace Project_Neros.Game.UI.Actors
             return bounds;
         }
 
-        public ICommand[] OnClick()
+        public Command[] OnClick()
         {
             return commands;
         }

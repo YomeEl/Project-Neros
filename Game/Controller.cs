@@ -9,7 +9,7 @@ namespace Project_Neros.Game
         {
             SpriteAtlas.LoadSprites();
 
-            var win = new RenderWindow(new VideoMode(1300, 700), "Project Neros");
+            var win = new RenderWindow(new VideoMode(1200, 600), "Project Neros");
             win.Position = new SFML.System.Vector2i(0, 0);
             win.SetFramerateLimit(60);
 

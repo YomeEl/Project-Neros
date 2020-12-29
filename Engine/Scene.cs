@@ -6,15 +6,14 @@ namespace Project_Neros.Engine
 {
     abstract class Scene
     {
-        protected readonly List<IActor> actors;
-        protected readonly Camera camera;
+        protected List<IActor> actors;
+        protected Camera camera;
         protected readonly RenderWindow win;
 
         public Scene(RenderWindow win)
         {
             this.win = win;
-            camera = new Camera(win.GetView().Size);
-            actors = new List<IActor>();
+            Reset();
             win.Resized += WinResized;
             win.MouseButtonPressed += OnClick;
         }
@@ -26,11 +25,15 @@ namespace Project_Neros.Engine
                 var actorBounds = actor.GetMapBounds();
                 if (actorBounds.Contains(e.X, e.Y))
                 {
-                    actor.OnClick();
+                    switch(actor.OnClick()[0].type)
+                    {
+                        case CommandType.Quit:
+                            win.Close();
+                            break;
+                    }
                 }
             }
         }
-
         public void OnMouseMove(object sender, SFML.Window.MouseMoveEventArgs e)
         {
             foreach (IActor actor in actors)
@@ -39,7 +42,6 @@ namespace Project_Neros.Engine
                 actor.Selected = actorBounds.Contains(e.X, e.Y);
             }
         }
-
         public void AddActor(IActor actor) => actors.Add(actor);
         public void RemoveActor(IActor actor) => actors.Remove(actor);
         public virtual void Draw()
@@ -54,10 +56,18 @@ namespace Project_Neros.Engine
             }
         }
 
+        protected abstract void InitializeElements();
+
+        private void Reset()
+        {
+            camera = new Camera(new SFML.System.Vector2f(win.Size.X, win.Size.Y));
+            actors = new List<IActor>();
+        }
         private void WinResized(object sender, SFML.Window.SizeEventArgs e)
         {
-            camera.SetWinSize(new SFML.System.Vector2f(e.Width, e.Height));
+            win.SetView(new View(new FloatRect(0, 0, e.Width, e.Height)));
+            Reset();
+            InitializeElements();
         }
-
     }
 }
