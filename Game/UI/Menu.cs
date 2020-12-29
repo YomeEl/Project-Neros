@@ -6,7 +6,7 @@ using SFML.System;
 
 namespace Project_Neros.Game.UI
 {
-    class Menu : Field
+    class Menu : Scene
     {
         private readonly Sprite bg;
 

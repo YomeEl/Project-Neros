@@ -4,13 +4,13 @@ using SFML.Graphics;
 
 namespace Project_Neros.Engine
 {
-    abstract class Field
+    abstract class Scene
     {
         protected readonly List<IActor> actors;
         protected readonly Camera camera;
         protected readonly RenderWindow win;
 
-        public Field(RenderWindow win)
+        public Scene(RenderWindow win)
         {
             this.win = win;
             camera = new Camera(win.GetView().Size);
