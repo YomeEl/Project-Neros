@@ -1,4 +1,6 @@
-﻿using SFML.Window;
+﻿using Project_Neros.Engine;
+
+using SFML.Window;
 using SFML.Graphics;
 
 namespace Project_Neros.Game
@@ -14,13 +16,21 @@ namespace Project_Neros.Game
             win.SetFramerateLimit(60);
 
             var menu = new UI.Menu(win);
-            win.MouseButtonPressed += menu.OnClick;
-            win.MouseMoved += menu.OnMouseMove;
+            var surface = new World.Surface(win);
+
+            menu.Activate();
+            Scene activeScene = menu;
 
             while (win.IsOpen)
             {
+                if (!activeScene.IsActive)
+                {
+                    activeScene = surface;
+                    surface.Activate();
+                }
+
                 win.Clear();
-                menu.Draw();
+                activeScene.Draw();
                 win.Display();
                 win.WaitAndDispatchEvents();
             }
