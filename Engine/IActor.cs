@@ -9,7 +9,9 @@ namespace Project_Neros.Engine
         bool Selected { get; set; }
 
         Command[] OnClick();
+
         FloatRect GetMapBounds();
+
         void Draw(Vector2f position, RenderWindow win);
     }
 }

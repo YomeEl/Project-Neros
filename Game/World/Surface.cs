@@ -9,6 +9,7 @@ namespace Project_Neros.Game.World
     class Surface : Scene
     {
         Sprite ground;
+
         public Surface(RenderWindow win) : base(win)
         {
             InitializeElements();
@@ -24,7 +25,7 @@ namespace Project_Neros.Game.World
         protected override void InitializeElements()
         {
             camera.Move((Vector2f)win.Size / 2);
-            ground = SpriteAtlas.Sprites["Ground.ground"];
+            ground = SpriteAtlas.Sprites["Ground.Ground"];
         }
 
         protected override void OnClick(object sender, MouseButtonEventArgs e)

@@ -14,7 +14,7 @@ namespace Project_Neros.Game.UI.Actors
         public Button CreateNewGameButton(Vector2f RelativePos)
         {
             var sprite = SpriteAtlas.Sprites["Menu.NewGame"];
-            var hoverSprite = SpriteAtlas.Sprites["Menu.NewGame_sel"];
+            var hoverSprite = SpriteAtlas.Sprites["Menu.NewGameSel"];
             var commands = new Engine.Command[]
             {
                 new Engine.Command()
@@ -30,7 +30,7 @@ namespace Project_Neros.Game.UI.Actors
         public Button CreateLoadButton(Vector2f RelativePos)
         {
             var sprite = SpriteAtlas.Sprites["Menu.Load"];
-            var hoverSprite = SpriteAtlas.Sprites["Menu.Load_sel"];
+            var hoverSprite = SpriteAtlas.Sprites["Menu.LoadSel"];
             var button = new Button(win, sprite, hoverSprite, new Engine.Command[0]);
             button.RelativePosition = RelativePos;
             return button;
@@ -39,7 +39,7 @@ namespace Project_Neros.Game.UI.Actors
         public Button CreateQuitButton(Vector2f RelativePos)
         {
             var sprite = SpriteAtlas.Sprites["Menu.Quit"];
-            var hoverSprite = SpriteAtlas.Sprites["Menu.Quit_sel"];
+            var hoverSprite = SpriteAtlas.Sprites["Menu.QuitSel"];
             var commands = new Engine.Command[] 
             { 
                 new Engine.Command() 

@@ -17,7 +17,7 @@ namespace Project_Neros.Game.UI
             InitializeElements();
         }
 
-        override public void Draw()
+        public override void Draw()
         {
             win.Draw(bg);
             win.Draw(title);
@@ -28,14 +28,14 @@ namespace Project_Neros.Game.UI
         {
             camera.Move((Vector2f)win.Size / 2);
 
-            bg = SpriteAtlas.Sprites["Menu.bg"];
+            bg = SpriteAtlas.Sprites["Menu.Bg"];
             bg.Scale = new Vector2f(1, 1) * win.Size.X / bg.Texture.Size.X;
             var mx = (win.Size.X - bg.Texture.Size.X * bg.Scale.X) / 2;
             var my = (win.Size.Y - bg.Texture.Size.Y * bg.Scale.Y) / 2;
             bg.Position = new Vector2f(mx, my);
 
             float title_top = 0.1f;
-            title = SpriteAtlas.Sprites["Menu.title"];
+            title = SpriteAtlas.Sprites["Menu.Title"];
             title.Scale = new Vector2f(1, 1) * win.Size.X / bg.Texture.Size.X;
             var tx = (win.Size.X - title.Texture.Size.X * title.Scale.X) / 2;
             var ty = (win.Size.Y - title.Texture.Size.Y * title.Scale.Y) * title_top;
