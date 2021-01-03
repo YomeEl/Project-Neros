@@ -31,6 +31,8 @@ namespace Project_Neros.Engine
 
         public void RemoveActor(IActor actor) => actors.Remove(actor);
 
+        public abstract void Step();
+
         public virtual void Draw()
         {
             var viewRect = camera.GetBorders();

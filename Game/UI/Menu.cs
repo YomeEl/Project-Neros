@@ -24,6 +24,8 @@ namespace Project_Neros.Game.UI
             base.Draw();
         }
 
+        public override void Step() { }
+
         protected override void InitializeElements()
         {
             camera.Move((Vector2f)win.Size / 2);
