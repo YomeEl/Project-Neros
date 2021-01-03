@@ -71,6 +71,8 @@ namespace Project_Neros.Game.UI
             }
         }
 
+        protected override void OnKeyPressed(object sender, KeyEventArgs e) { }
+
         protected override void OnMouseMove(object sender, MouseMoveEventArgs e)
         {
             foreach (IActor actor in actors)

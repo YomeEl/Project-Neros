@@ -36,6 +36,10 @@ namespace Project_Neros.Game.World
         {
         }
 
+        protected override void OnKeyPressed(object sender, KeyEventArgs e)
+        {
+        }
+
         protected override void OnMouseMove(object sender, MouseMoveEventArgs e)
         {
         }

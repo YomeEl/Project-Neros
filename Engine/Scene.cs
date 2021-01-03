@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using SFML.Graphics;
+using SFML.Window;
 
 namespace Project_Neros.Engine
 {
@@ -25,6 +26,7 @@ namespace Project_Neros.Engine
 
             win.MouseButtonPressed += OnClick;
             win.MouseMoved += OnMouseMove;
+            win.KeyPressed += OnKeyPressed;
         }
 
         public void AddActor(IActor actor) => actors.Add(actor);
@@ -47,9 +49,11 @@ namespace Project_Neros.Engine
 
         protected abstract void InitializeElements();
 
-        protected abstract void OnClick(object sender, SFML.Window.MouseButtonEventArgs e);
+        protected abstract void OnClick(object sender, MouseButtonEventArgs e);
 
-        protected abstract void OnMouseMove(object sender, SFML.Window.MouseMoveEventArgs e);
+        protected abstract void OnMouseMove(object sender, MouseMoveEventArgs e);
+
+        protected abstract void OnKeyPressed(object sender, KeyEventArgs e);
 
         protected void Deactivate()
         {
@@ -57,6 +61,7 @@ namespace Project_Neros.Engine
 
             win.MouseButtonPressed -= OnClick;
             win.MouseMoved -= OnMouseMove;
+            win.KeyPressed -= OnKeyPressed;
         }
 
         private void Reset()
