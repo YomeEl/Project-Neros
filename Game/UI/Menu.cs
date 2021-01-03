@@ -3,6 +3,7 @@ using Project_Neros.Game.UI.Actors;
 
 using SFML.Graphics;
 using SFML.System;
+using SFML.Window;
 
 namespace Project_Neros.Game.UI
 {
@@ -45,6 +46,36 @@ namespace Project_Neros.Game.UI
             AddActor(factory.CreateNewGameButton(new Vector2f(0.2f, top)));
             AddActor(factory.CreateLoadButton(new Vector2f(0.5f, top)));
             AddActor(factory.CreateQuitButton(new Vector2f(0.8f, top)));
+        }
+
+        protected override void OnClick(object sender, MouseButtonEventArgs e)
+        {
+            foreach (IActor actor in actors)
+            {
+                var actorBounds = actor.GetMapBounds();
+                if (actorBounds.Contains(e.X, e.Y))
+                {
+                    switch (actor.OnClick()[0].type)
+                    {
+                        case CommandType.StartNew:
+                            Deactivate();
+                            break;
+
+                        case CommandType.Quit:
+                            win.Close();
+                            break;
+                    }
+                }
+            }
+        }
+
+        protected override void OnMouseMove(object sender, MouseMoveEventArgs e)
+        {
+            foreach (IActor actor in actors)
+            {
+                var actorBounds = actor.GetMapBounds();
+                actor.Selected = actorBounds.Contains(e.X, e.Y);
+            }
         }
     }
 }
