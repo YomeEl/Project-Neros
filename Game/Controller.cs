@@ -31,6 +31,7 @@ namespace Project_Neros.Game
 
                 win.Clear();
                 activeScene.Draw();
+                activeScene.Step();
                 win.Display();
                 win.WaitAndDispatchEvents();
             }

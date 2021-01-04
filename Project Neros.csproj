@@ -70,6 +70,8 @@
     <Compile Include="Game\UI\Actors\ButtonFactory.cs" />
     <Compile Include="Game\UI\Actors\Button.cs" />
     <Compile Include="Game\UI\Menu.cs" />
+    <Compile Include="Game\World\Actors\Player.cs" />
+    <Compile Include="Game\World\Actors\Direction.cs" />
     <Compile Include="Game\World\Surface.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

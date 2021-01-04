@@ -1,4 +1,5 @@
 ﻿using Project_Neros.Engine;
+using Project_Neros.Game.World.Actors;
 
 using SFML.System;
 using SFML.Graphics;
@@ -8,7 +9,8 @@ namespace Project_Neros.Game.World
 {
     class Surface : Scene
     {
-        Sprite ground;
+        private Sprite ground;
+        private Player player;
 
         public Surface(RenderWindow win) : base(win)
         {
@@ -24,12 +26,82 @@ namespace Project_Neros.Game.World
 
         public override void Step()
         {
+            int dirBin = 0;
+            if (Keyboard.IsKeyPressed(Keyboard.Key.W))
+            {
+                dirBin += 0b0001;
+            }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.D))
+            {
+                dirBin += 0b0010;
+            }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.S))
+            {
+                dirBin += 0b0100;
+            }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.A))
+            {
+                dirBin += 0b1000;
+            }
+
+            if ((dirBin & 0b0101) == 0b0101)
+            {
+                dirBin &= 0b1010;
+            }
+            if ((dirBin & 0b1010) == 0b1010)
+            {
+                dirBin &= 0b0101;
+            }
+
+            Direction? dir = null;
+            switch (dirBin)
+            {
+                case 0b0001:
+                    dir = Direction.Up;
+                    player.Position += new Vector2f(0, -1) * player.Speed;
+                    break;
+                case 0b0011:
+                    dir = Direction.UpRight;
+                    player.Position += new Vector2f(1, -1) * player.Speed;
+                    break;
+                case 0b0010:
+                    dir = Direction.Right;
+                    player.Position += new Vector2f(1, 0) * player.Speed;
+                    break;
+                case 0b0110:
+                    dir = Direction.DownRight;
+                    player.Position += new Vector2f(1, 1) * player.Speed;
+                    break;
+                case 0b0100:
+                    dir = Direction.Down;
+                    player.Position += new Vector2f(0, 1) * player.Speed;
+                    break;
+                case 0b1100:
+                    dir = Direction.DownLeft;
+                    player.Position += new Vector2f(-1, 1) * player.Speed;
+                    break;
+                case 0b1000:
+                    dir = Direction.Left;
+                    player.Position += new Vector2f(-1, 0) * player.Speed;
+                    break;
+                case 0b1001:
+                    dir = Direction.UpLeft;
+                    player.Position += new Vector2f(-1, -1) * player.Speed;
+                    break;
+                default:
+                    dir = null;
+                    break;
+
+            }
+            player.SetDirection(dir);
         }
 
         protected override void InitializeElements()
         {
             camera.Move((Vector2f)win.Size / 2);
             ground = SpriteAtlas.Sprites["Ground.Ground"];
+            player = new Player();
+            AddActor(player);
         }
 
         protected override void OnClick(object sender, MouseButtonEventArgs e)
