@@ -33,7 +33,7 @@ namespace Project_Neros.Game
                 activeScene.Draw();
                 activeScene.Step();
                 win.Display();
-                win.WaitAndDispatchEvents();
+                win.DispatchEvents();
             }
         }
     }
