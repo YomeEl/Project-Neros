@@ -17,6 +17,14 @@ namespace Project_Neros.Game.UI
             InitializeElements();
         }
 
+        public override void Activate()
+        {
+            IsActive = true;
+
+            win.MouseButtonPressed += OnClick;
+            win.MouseMoved += OnMouseMove;
+        }
+
         public override void Draw()
         {
             win.Draw(bg);
@@ -25,6 +33,14 @@ namespace Project_Neros.Game.UI
         }
 
         public override void Step() { }
+
+        protected override void Deactivate()
+        {
+            IsActive = false;
+            
+            win.MouseButtonPressed -= OnClick;
+            win.MouseMoved -= OnMouseMove;
+        }
 
         protected override void InitializeElements()
         {
@@ -50,7 +66,7 @@ namespace Project_Neros.Game.UI
             AddActor(factory.CreateQuitButton(new Vector2f(0.8f, top)));
         }
 
-        protected override void OnClick(object sender, MouseButtonEventArgs e)
+        private void OnClick(object sender, MouseButtonEventArgs e)
         {
             foreach (IActor actor in actors)
             {
@@ -71,9 +87,7 @@ namespace Project_Neros.Game.UI
             }
         }
 
-        protected override void OnKeyPressed(object sender, KeyEventArgs e) { }
-
-        protected override void OnMouseMove(object sender, MouseMoveEventArgs e)
+        private void OnMouseMove(object sender, MouseMoveEventArgs e)
         {
             foreach (IActor actor in actors)
             {

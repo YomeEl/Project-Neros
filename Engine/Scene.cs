@@ -7,7 +7,7 @@ namespace Project_Neros.Engine
 {
     abstract class Scene
     {
-        public bool IsActive { get; private set; } = true;
+        public bool IsActive { get; protected set; } = true;
 
         protected List<IActor> actors;
         protected Camera camera;
@@ -20,14 +20,10 @@ namespace Project_Neros.Engine
             win.Resized += WinResized;
         }
 
-        public void Activate()
-        {
-            IsActive = true;
-
-            win.MouseButtonPressed += OnClick;
-            win.MouseMoved += OnMouseMove;
-            win.KeyPressed += OnKeyPressed;
-        }
+        /// <summary>
+        /// Set IsActive to true and subscribe to events
+        /// </summary>
+        public abstract void Activate();
 
         public void AddActor(IActor actor) => actors.Add(actor);
 
@@ -49,20 +45,10 @@ namespace Project_Neros.Engine
 
         protected abstract void InitializeElements();
 
-        protected abstract void OnClick(object sender, MouseButtonEventArgs e);
-
-        protected abstract void OnMouseMove(object sender, MouseMoveEventArgs e);
-
-        protected abstract void OnKeyPressed(object sender, KeyEventArgs e);
-
-        protected void Deactivate()
-        {
-            IsActive = false;
-
-            win.MouseButtonPressed -= OnClick;
-            win.MouseMoved -= OnMouseMove;
-            win.KeyPressed -= OnKeyPressed;
-        }
+        /// <summary>
+        /// Set IsActive to false and unsubscribe from events
+        /// </summary>
+        protected abstract void Deactivate();
 
         private void Reset()
         {

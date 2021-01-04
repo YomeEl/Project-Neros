@@ -12,9 +12,22 @@ namespace Project_Neros.Game.World
         private Sprite ground;
         private Player player;
 
+        private bool moveUp = false;
+        private bool moveRight = false;
+        private bool moveDown = false;
+        private bool moveLeft = false;
+
         public Surface(RenderWindow win) : base(win)
         {
             InitializeElements();
+        }
+
+        public override void Activate()
+        {
+            IsActive = true;
+
+            win.KeyPressed += OnKeyPressed;
+            win.KeyReleased += OnKeyReleased;
         }
 
         public override void Draw()
@@ -27,19 +40,19 @@ namespace Project_Neros.Game.World
         public override void Step()
         {
             int dirBin = 0;
-            if (Keyboard.IsKeyPressed(Keyboard.Key.W))
+            if (moveUp)
             {
                 dirBin += 0b0001;
             }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.D))
+            if (moveRight)
             {
                 dirBin += 0b0010;
             }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.S))
+            if (moveDown)
             {
                 dirBin += 0b0100;
             }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.A))
+            if (moveLeft)
             {
                 dirBin += 0b1000;
             }
@@ -104,16 +117,50 @@ namespace Project_Neros.Game.World
             AddActor(player);
         }
 
-        protected override void OnClick(object sender, MouseButtonEventArgs e)
+        protected override void Deactivate()
         {
+            IsActive = false;
+
+            win.KeyPressed -= OnKeyPressed;
+            win.KeyReleased -= OnKeyReleased;
         }
 
-        protected override void OnKeyPressed(object sender, KeyEventArgs e)
+        private void OnKeyPressed(object sender, KeyEventArgs e)
         {
+            switch (e.Code)
+            {
+                case Keyboard.Key.W:
+                    moveUp = true;
+                    break;
+                case Keyboard.Key.D:
+                    moveRight = true;
+                    break;
+                case Keyboard.Key.S:
+                    moveDown = true;
+                    break;
+                case Keyboard.Key.A:
+                    moveLeft = true;
+                    break;
+            }
         }
 
-        protected override void OnMouseMove(object sender, MouseMoveEventArgs e)
+        private void OnKeyReleased(object sender, KeyEventArgs e)
         {
+            switch (e.Code)
+            {
+                case Keyboard.Key.W:
+                    moveUp = false;
+                    break;
+                case Keyboard.Key.D:
+                    moveRight = false;
+                    break;
+                case Keyboard.Key.S:
+                    moveDown = false;
+                    break;
+                case Keyboard.Key.A:
+                    moveLeft = false;
+                    break;
+            }
         }
 
         private void DrawTiledBackground()
