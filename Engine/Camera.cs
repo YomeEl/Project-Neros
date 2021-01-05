@@ -35,5 +35,10 @@ namespace Project_Neros.Engine
         {
             return (absPos - target + winSize / 2) * scale;
         }
+
+        public void SetTarget(Vector2f position)
+        {
+            target = position;
+        }
     }
 }
