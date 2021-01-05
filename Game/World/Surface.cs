@@ -107,6 +107,8 @@ namespace Project_Neros.Game.World
 
             }
             player.SetDirection(dir);
+
+            camera.SetTarget(player.Position);
         }
 
         protected override void InitializeElements()
