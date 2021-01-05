@@ -75,7 +75,7 @@ namespace Project_Neros.Game.World
                     break;
                 case 0b0011:
                     dir = Direction.UpRight;
-                    player.Position += new Vector2f(1, -1) * player.Speed;
+                    player.Position += new Vector2f(1, -1) * player.Speed / 2;
                     break;
                 case 0b0010:
                     dir = Direction.Right;
@@ -83,7 +83,7 @@ namespace Project_Neros.Game.World
                     break;
                 case 0b0110:
                     dir = Direction.DownRight;
-                    player.Position += new Vector2f(1, 1) * player.Speed;
+                    player.Position += new Vector2f(1, 1) * player.Speed / 2;
                     break;
                 case 0b0100:
                     dir = Direction.Down;
@@ -91,7 +91,7 @@ namespace Project_Neros.Game.World
                     break;
                 case 0b1100:
                     dir = Direction.DownLeft;
-                    player.Position += new Vector2f(-1, 1) * player.Speed;
+                    player.Position += new Vector2f(-1, 1) * player.Speed / 2;
                     break;
                 case 0b1000:
                     dir = Direction.Left;
@@ -99,7 +99,7 @@ namespace Project_Neros.Game.World
                     break;
                 case 0b1001:
                     dir = Direction.UpLeft;
-                    player.Position += new Vector2f(-1, -1) * player.Speed;
+                    player.Position += new Vector2f(-1, -1) * player.Speed / 2;
                     break;
                 default:
                     dir = null;
