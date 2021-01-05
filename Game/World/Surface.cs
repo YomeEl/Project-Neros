@@ -173,9 +173,9 @@ namespace Project_Neros.Game.World
             uint countX = win.Size.X / ground.Texture.Size.X + 2;
             uint countY = win.Size.Y / ground.Texture.Size.Y + 2;
             
-            for (int j = -1; j < countY - 1; j++)
+            for (int j = -1; j < countY; j++)
             {
-                for (int i = -1; i < countX - 1; i++)
+                for (int i = -1; i < countX; i++)
                 {
                     ground.Position = new Vector2f(i * ground.Texture.Size.X - shiftLeft, j * ground.Texture.Size.Y - shiftTop);
                     win.Draw(ground);
