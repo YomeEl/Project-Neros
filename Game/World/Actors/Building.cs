@@ -64,8 +64,8 @@ namespace Project_Neros.Game.World.Actors
 
         public FloatRect GetMapBounds()
         {
-            var topLeft = Position - (Vector2f)sprite.Texture.Size / 2;
-            var bounds = new FloatRect(topLeft, (Vector2f)sprite.Texture.Size);
+            var topLeft = Position - size / 2;
+            var bounds = new FloatRect(topLeft, size);
             return bounds;
         }
 
