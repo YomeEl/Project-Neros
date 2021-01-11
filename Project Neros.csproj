@@ -83,24 +83,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Sprites\Menu\bg.psd" />
-    <None Include="Sprites\Menu\Button.psd" />
-    <None Include="Sprites\Menu\Button_sel.psd" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Sprites\Menu\bg.png" />
-    <Content Include="Sprites\Menu\Load.png" />
-    <Content Include="Sprites\Menu\Load_sel.png" />
-    <Content Include="Sprites\Menu\NewGame.png" />
-    <Content Include="Sprites\Menu\NewGame_sel.png" />
-    <Content Include="Sprites\Menu\Quit.png" />
-    <Content Include="Sprites\Menu\Quit_sel.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
