@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<buildings>
+  <building name="SolarPanel">
+    <sprite>Objects.SolarPanel</sprite>
+	<size x="100", y="100"></size>
+  </building>
+</buildings>

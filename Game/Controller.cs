@@ -10,6 +10,7 @@ namespace Project_Neros.Game
         public void Start()
         {
             SpriteAtlas.LoadSprites();
+            BuildingAtlas.LoadBuildings();
 
             var win = new RenderWindow(new VideoMode(1200, 600), "Project Neros");
             win.Position = new SFML.System.Vector2i(0, 0);
