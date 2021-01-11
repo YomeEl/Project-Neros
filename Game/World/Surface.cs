@@ -39,75 +39,7 @@ namespace Project_Neros.Game.World
 
         public override void Step()
         {
-            int dirBin = 0;
-            if (moveUp)
-            {
-                dirBin += 0b0001;
-            }
-            if (moveRight)
-            {
-                dirBin += 0b0010;
-            }
-            if (moveDown)
-            {
-                dirBin += 0b0100;
-            }
-            if (moveLeft)
-            {
-                dirBin += 0b1000;
-            }
-
-            if ((dirBin & 0b0101) == 0b0101)
-            {
-                dirBin &= 0b1010;
-            }
-            if ((dirBin & 0b1010) == 0b1010)
-            {
-                dirBin &= 0b0101;
-            }
-
-            Direction? dir = null;
-            switch (dirBin)
-            {
-                case 0b0001:
-                    dir = Direction.Up;
-                    player.Position += new Vector2f(0, -1) * player.Speed;
-                    break;
-                case 0b0011:
-                    dir = Direction.UpRight;
-                    player.Position += new Vector2f(1, -1) * player.Speed / 2;
-                    break;
-                case 0b0010:
-                    dir = Direction.Right;
-                    player.Position += new Vector2f(1, 0) * player.Speed;
-                    break;
-                case 0b0110:
-                    dir = Direction.DownRight;
-                    player.Position += new Vector2f(1, 1) * player.Speed / 2;
-                    break;
-                case 0b0100:
-                    dir = Direction.Down;
-                    player.Position += new Vector2f(0, 1) * player.Speed;
-                    break;
-                case 0b1100:
-                    dir = Direction.DownLeft;
-                    player.Position += new Vector2f(-1, 1) * player.Speed / 2;
-                    break;
-                case 0b1000:
-                    dir = Direction.Left;
-                    player.Position += new Vector2f(-1, 0) * player.Speed;
-                    break;
-                case 0b1001:
-                    dir = Direction.UpLeft;
-                    player.Position += new Vector2f(-1, -1) * player.Speed / 2;
-                    break;
-                default:
-                    dir = null;
-                    break;
-
-            }
-            player.SetDirection(dir);
-
+            MovePlayer();
             camera.SetTarget(player.Position);
         }
 
@@ -181,6 +113,104 @@ namespace Project_Neros.Game.World
                     win.Draw(ground);
                 }
             }
+        }
+
+        private void MovePlayer()
+        {
+            int dirBin = 0;
+            if (moveUp)
+            {
+                dirBin += 0b0001;
+            }
+            if (moveRight)
+            {
+                dirBin += 0b0010;
+            }
+            if (moveDown)
+            {
+                dirBin += 0b0100;
+            }
+            if (moveLeft)
+            {
+                dirBin += 0b1000;
+            }
+
+            if ((dirBin & 0b0101) == 0b0101)
+            {
+                dirBin &= 0b1010;
+            }
+            if ((dirBin & 0b1010) == 0b1010)
+            {
+                dirBin &= 0b0101;
+            }
+
+            var movement = BinaryDirectionToVectorAndDirection(dirBin);
+            player.SetDirection(movement.direction);
+            player.Position += movement.vector;
+            if (CheckCollisionsFor(player))
+            {
+                player.Position -= movement.vector;
+            }
+        }
+
+        private (Vector2f vector, Direction? direction)  BinaryDirectionToVectorAndDirection(int dirBin)
+        {
+            Direction? dir;
+            Vector2f vec = new Vector2f(0, 0);
+            switch (dirBin)
+            {
+                case 0b0001:
+                    dir = Direction.Up;
+                    vec = new Vector2f(0, -1) * player.Speed;
+                    break;
+                case 0b0011:
+                    dir = Direction.UpRight;
+                    vec = new Vector2f(1, -1) * player.Speed / 2;
+                    break;
+                case 0b0010:
+                    dir = Direction.Right;
+                    vec = new Vector2f(1, 0) * player.Speed;
+                    break;
+                case 0b0110:
+                    dir = Direction.DownRight;
+                    vec = new Vector2f(1, 1) * player.Speed / 2;
+                    break;
+                case 0b0100:
+                    dir = Direction.Down;
+                    vec = new Vector2f(0, 1) * player.Speed;
+                    break;
+                case 0b1100:
+                    dir = Direction.DownLeft;
+                    vec = new Vector2f(-1, 1) * player.Speed / 2;
+                    break;
+                case 0b1000:
+                    dir = Direction.Left;
+                    vec = new Vector2f(-1, 0) * player.Speed;
+                    break;
+                case 0b1001:
+                    dir = Direction.UpLeft;
+                    vec = new Vector2f(-1, -1) * player.Speed / 2;
+                    break;
+                default:
+                    dir = null;
+                    break;
+            }
+            return (vec, dir);
+        }
+
+        private bool ActorsCollide(IActor actor1, IActor actor2)
+        {
+            return actor1 != actor2 ? actor1.GetMapBounds().Intersects(actor2.GetMapBounds()) : false;
+        }
+
+        private bool CheckCollisionsFor(IActor actor)
+        {
+            bool res = false;
+            foreach (IActor act in actors)
+            {
+                res = ActorsCollide(act, actor);
+            }
+            return res;
         }
     }
 }
