@@ -16,7 +16,8 @@ namespace Project_Neros.Engine
         public Scene(RenderWindow win)
         {
             this.win = win;
-            Reset();
+            camera = new Camera(new SFML.System.Vector2f(win.Size.X, win.Size.Y));
+            actors = new List<IActor>();
             win.Resized += WinResized;
         }
 
@@ -50,17 +51,11 @@ namespace Project_Neros.Engine
         /// </summary>
         protected abstract void Deactivate();
 
-        private void Reset()
+        private void WinResized(object sender, SizeEventArgs e)
         {
-            camera = new Camera(new SFML.System.Vector2f(win.Size.X, win.Size.Y));
-            actors = new List<IActor>();
-        }
-
-        private void WinResized(object sender, SFML.Window.SizeEventArgs e)
-        {
-            win.SetView(new View(new FloatRect(0, 0, e.Width, e.Height)));
-            Reset();
-            InitializeElements();
+            var screenRect = new FloatRect(0, 0, e.Width, e.Height);
+            win.SetView(new View(screenRect));
+            camera.WinSize = new SFML.System.Vector2f(screenRect.Width, screenRect.Height);
         }
     }
 }
