@@ -15,6 +15,7 @@ namespace Project_Neros.Game.UI
         public Menu(RenderWindow win) : base(win)
         {
             InitializeElements();
+            win.Resized += OnWinResized;
         }
 
         public override void Activate()
@@ -44,7 +45,7 @@ namespace Project_Neros.Game.UI
 
         protected override void InitializeElements()
         {
-            camera.Move((Vector2f)win.Size / 2);
+            camera.Target = (Vector2f)win.Size / 2;
 
             bg = SpriteAtlas.Sprites["Menu.Bg"];
             bg.Scale = new Vector2f(1, 1) * win.Size.X / bg.Texture.Size.X;
@@ -94,6 +95,12 @@ namespace Project_Neros.Game.UI
                 var actorBounds = actor.GetMapBounds();
                 actor.Selected = actorBounds.Contains(e.X, e.Y);
             }
+        }
+
+        private void OnWinResized(object sender, SizeEventArgs e)
+        {
+            actors.Clear();
+            InitializeElements();
         }
     }
 }

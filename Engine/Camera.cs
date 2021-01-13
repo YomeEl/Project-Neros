@@ -7,7 +7,7 @@ namespace Project_Neros.Engine
     {
         public Vector2f Target { get; set; }
         public Vector2f WinSize { get; set; }
-        public float Scale { get; set; }
+        public float Scale { get; set; } = 1f;
 
         public Camera(Vector2f winSize, Vector2f? target = null)
         {

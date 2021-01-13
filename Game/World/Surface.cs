@@ -40,15 +40,15 @@ namespace Project_Neros.Game.World
         public override void Step()
         {
             MovePlayer();
-            camera.SetTarget(player.Position);
+            camera.Target = player.Position;
         }
 
         protected override void InitializeElements()
         {
-            camera.Move((Vector2f)win.Size / 2);
             ground = SpriteAtlas.Sprites["Ground.Ground"];
             player = new Player();
             AddActor(player);
+            camera.Target = player.Position;
         }
 
         protected override void Deactivate()
@@ -198,9 +198,9 @@ namespace Project_Neros.Game.World
             return (vec, dir);
         }
 
-        private bool ActorsCollide(IActor actor1, IActor actor2)
+        private bool IsActorsCollide(IActor actor1, IActor actor2)
         {
-            return actor1 != actor2 ? actor1.GetMapBounds().Intersects(actor2.GetMapBounds()) : false;
+            return actor1 != actor2 && actor1.GetMapBounds().Intersects(actor2.GetMapBounds());
         }
 
         private bool CheckCollisionsFor(IActor actor)
@@ -208,7 +208,7 @@ namespace Project_Neros.Game.World
             bool res = false;
             foreach (IActor act in actors)
             {
-                res = ActorsCollide(act, actor);
+                res = IsActorsCollide(act, actor);
             }
             return res;
         }
