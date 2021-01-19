@@ -12,6 +12,6 @@ namespace Project_Neros.Engine
 
         FloatRect GetMapBounds();
 
-        void Draw(Vector2f position, RenderWindow win);
+        void Draw(Vector2f position, float scale, RenderWindow win);
     }
 }

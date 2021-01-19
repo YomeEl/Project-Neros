@@ -53,12 +53,12 @@ namespace Project_Neros.Game.World.Actors
             size = building.size;
         }
 
-        public void Draw(Vector2f position, RenderWindow win)
+        public void Draw(Vector2f position, float scale, RenderWindow win)
         {
-            sprite.Position = position - size / 2;
+            sprite.Position = position - size * scale / 2;
             var sSize = sprite.Texture.Size;
-            var scale = new Vector2f(size.X / sSize.X, size.Y / sSize.Y);
-            sprite.Scale = scale;
+            var sizeScale = new Vector2f(size.X / sSize.X, size.Y / sSize.Y);
+            sprite.Scale = sizeScale * scale;
             win.Draw(sprite);
         }
 

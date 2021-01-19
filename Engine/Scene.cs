@@ -39,7 +39,7 @@ namespace Project_Neros.Engine
             {
                 if (actor.GetMapBounds().Intersects(viewRect))
                 {
-                    actor.Draw(camera.GetRelativePosition(actor.Position), win);
+                    actor.Draw(camera.GetRelativePosition(actor.Position), camera.Scale, win);
                 }
             }
         }

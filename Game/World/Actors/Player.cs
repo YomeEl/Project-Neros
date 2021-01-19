@@ -65,9 +65,10 @@ namespace Project_Neros.Game.World.Actors
             return bounds;
         }
 
-        public void Draw(Vector2f position, RenderWindow win)
+        public void Draw(Vector2f position, float scale, RenderWindow win)
         {
-            activeSprite.Position = position - (Vector2f)activeSprite.Texture.Size / 2;
+            activeSprite.Position = position - (Vector2f)activeSprite.Texture.Size * scale / 2;
+            activeSprite.Scale = new Vector2f(1,1) * scale;
             win.Draw(activeSprite, RenderStates.Default);
         }
     }

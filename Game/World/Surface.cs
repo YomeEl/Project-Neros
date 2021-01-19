@@ -28,6 +28,7 @@ namespace Project_Neros.Game.World
 
             win.KeyPressed += OnKeyPressed;
             win.KeyReleased += OnKeyReleased;
+            win.MouseWheelScrolled += OnMouseWheelScrolled;
         }
 
         public override void Draw()
@@ -57,6 +58,7 @@ namespace Project_Neros.Game.World
 
             win.KeyPressed -= OnKeyPressed;
             win.KeyReleased -= OnKeyReleased;
+            win.MouseWheelScrolled -= OnMouseWheelScrolled;
         }
 
         private void OnKeyPressed(object sender, KeyEventArgs e)
@@ -96,20 +98,27 @@ namespace Project_Neros.Game.World
                     break;
             }
         }
+        
+        private void OnMouseWheelScrolled(object sender, MouseWheelScrollEventArgs e)
+        {
+            camera.Rescale(e.Delta);
+        }
 
         private void DrawTiledBackground()
         {
             var cameraBorders = camera.GetBorders();
-            var shiftLeft = cameraBorders.Left % ground.Texture.Size.X;
-            var shiftTop = cameraBorders.Top % ground.Texture.Size.Y;
-            uint countX = win.Size.X / ground.Texture.Size.X + 2;
-            uint countY = win.Size.Y / ground.Texture.Size.Y + 2;
+            ground.Scale = new Vector2f(1, 1) * camera.Scale;
+            var groundSize = (Vector2f)ground.Texture.Size * camera.Scale;
+            var shiftLeft = cameraBorders.Left % groundSize.X;
+            var shiftTop = cameraBorders.Top % groundSize.Y;
+            uint countX = win.Size.X / (uint)groundSize.X + 2;
+            uint countY = win.Size.Y / (uint)groundSize.Y + 2;
             
             for (int j = -1; j < countY; j++)
             {
                 for (int i = -1; i < countX; i++)
                 {
-                    ground.Position = new Vector2f(i * ground.Texture.Size.X - shiftLeft, j * ground.Texture.Size.Y - shiftTop);
+                    ground.Position = new Vector2f(i * groundSize.X - shiftLeft, j * groundSize.Y - shiftTop);
                     win.Draw(ground);
                 }
             }

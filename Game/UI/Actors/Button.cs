@@ -24,7 +24,7 @@ namespace Project_Neros.Game.UI.Actors
             this.commands = commands;
         }
 
-        public void Draw(Vector2f position, RenderWindow win)
+        public void Draw(Vector2f position, float scale, RenderWindow win)
         {
             var actSprite = Selected ? hoverSprite : sprite;
             var topLeftPos = new Vector2f(win.Size.X * RelativePosition.X, win.Size.Y * RelativePosition.Y);
