@@ -50,6 +50,9 @@ namespace Project_Neros.Game.World
             player = new Player();
             AddActor(player);
             camera.Target = player.Position;
+            var sp = new Building("SolarPanel");
+            sp.Position = new Vector2f(300, 300);
+            AddActor(sp);
         }
 
         protected override void Deactivate()
