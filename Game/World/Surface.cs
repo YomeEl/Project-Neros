@@ -77,6 +77,12 @@ namespace Project_Neros.Game.World
                 case Keyboard.Key.A:
                     moveLeft = true;
                     break;
+                case Keyboard.Key.Add:
+                    camera.Rescale(1);
+                    break;
+                case Keyboard.Key.Subtract:
+                    camera.Rescale(-1);
+                    break;
             }
         }
 
