@@ -51,7 +51,7 @@ namespace Project_Neros.Game.World
             AddActor(player);
             camera.Target = player.Position;
             var sp = new Building("SolarPanel");
-            sp.Position = new Vector2f(300, 300);
+            sp.Position = new Vector2f(300, 0);
             AddActor(sp);
         }
 

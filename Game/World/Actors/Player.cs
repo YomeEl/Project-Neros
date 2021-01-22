@@ -69,7 +69,7 @@ namespace Project_Neros.Game.World.Actors
         {
             activeSprite.Position = position - (Vector2f)activeSprite.Texture.Size * scale / 2;
             activeSprite.Scale = new Vector2f(1,1) * scale;
-            win.Draw(activeSprite, RenderStates.Default);
+            win.Draw(activeSprite);
         }
     }
 }
