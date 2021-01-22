@@ -118,18 +118,20 @@ namespace Project_Neros.Game.World
             var cameraBorders = camera.GetBorders();
             ground.Scale = new Vector2f(1, 1) * camera.Scale;
             var groundSize = (Vector2f)ground.Texture.Size * camera.Scale;
-            var shiftLeft = cameraBorders.Left % groundSize.X;
-            var shiftTop = cameraBorders.Top % groundSize.Y;
-            uint countX = win.Size.X / (uint)groundSize.X + 2;
-            uint countY = win.Size.Y / (uint)groundSize.Y + 2;
-            
-            for (int j = -1; j < countY; j++)
+            var startX = cameraBorders.Left - cameraBorders.Left % groundSize.X - groundSize.X;
+            var x = startX;
+            var y = cameraBorders.Top - cameraBorders.Top % groundSize.Y - groundSize.Y;
+
+            while (y <= cameraBorders.Top + cameraBorders.Height)
             {
-                for (int i = -1; i < countX; i++)
+                while (x <= cameraBorders.Left + cameraBorders.Width)
                 {
-                    ground.Position = new Vector2f(i * groundSize.X - shiftLeft, j * groundSize.Y - shiftTop);
+                    ground.Position = camera.GetRelativePosition(new Vector2f(x, y));
                     win.Draw(ground);
+                    x += groundSize.X;
                 }
+                x = startX;
+                y += groundSize.Y;
             }
         }
 

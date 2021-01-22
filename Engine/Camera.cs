@@ -27,13 +27,13 @@ namespace Project_Neros.Engine
 
         public FloatRect GetBorders()
         {
-            var topleft = (Target - WinSize * Scale / 2);
-            return new FloatRect(topleft, WinSize * Scale);
+            var topleft = (Target * Scale - WinSize / 2);
+            return new FloatRect(topleft, WinSize);
         }
 
         public Vector2f GetRelativePosition(Vector2f absPos)
         {
-            return (absPos - Target + WinSize / 2);
+            return (absPos - Target * Scale + WinSize / 2);
         }
 
         public void Rescale(float delta)
