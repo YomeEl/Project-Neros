@@ -12,11 +12,12 @@ namespace Project_Neros.Game.World.Actors
 
         private Direction direction;
         private Sprite activeSprite;
+        private readonly Vector2f size = new Vector2f(100, 100);
 
         public Player()
         {
             Position = new Vector2f(0, 0);
-            Speed = 5f;
+            Speed = 10f;
             SetDirection(Direction.Up);
         }
 
@@ -60,15 +61,17 @@ namespace Project_Neros.Game.World.Actors
 
         public FloatRect GetMapBounds()
         {
-            var topLeft = Position - (Vector2f)activeSprite.Texture.Size / 2;
-            var bounds = new FloatRect(topLeft, (Vector2f)activeSprite.Texture.Size);
+            var topLeft = Position - size / 2;
+            var bounds = new FloatRect(topLeft, size);
             return bounds;
         }
 
         public void Draw(Vector2f position, float scale, RenderWindow win)
         {
-            activeSprite.Position = position - (Vector2f)activeSprite.Texture.Size * scale / 2;
-            activeSprite.Scale = new Vector2f(1,1) * scale;
+            activeSprite.Position = position - size * scale / 2;
+            var sSize = activeSprite.Texture.Size;
+            var sizeScale = new Vector2f(size.X / sSize.X, size.Y / sSize.Y);
+            activeSprite.Scale = sizeScale * scale;
             win.Draw(activeSprite);
         }
     }
