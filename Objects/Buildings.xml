@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <buildings>
-  <building name="SolarPanel">
+  <building typeName="SolarPanel">
     <sprite>Objects.SolarPanel</sprite>
-	<size x="100", y="100"></size>
+	<size x="200" y="200"></size>
   </building>
 </buildings>
