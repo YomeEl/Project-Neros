@@ -3,6 +3,8 @@
 using SFML.Graphics;
 using SFML.System;
 
+using System.Xml;
+
 namespace Project_Neros.Game.UI.Actors
 {
     class Button : IActor
@@ -16,12 +18,48 @@ namespace Project_Neros.Game.UI.Actors
         private readonly Sprite hoverSprite;
         private readonly Command[] commands;
 
-        public Button(RenderWindow win, Sprite sprite, Sprite hoverSprite, Command[] commands)
+        public Button(RenderWindow win, XmlNode xmlNode)
         {
             this.win = win;
-            this.sprite = sprite;
-            this.hoverSprite = hoverSprite;
-            this.commands = commands;
+            commands = new Command[0];
+
+            try
+            {
+                if (xmlNode.Attributes["class"].Value == "button")
+                {
+                    foreach (XmlNode node in xmlNode.ChildNodes)
+                    {
+                        switch (node.Name)
+                        {
+                            case "pos":
+                                var left = float.Parse(node.Attributes["left"].Value);
+                                var top = float.Parse(node.Attributes["top"].Value);
+                                RelativePosition = new Vector2f(left, top);
+                                break;
+                            case "sprite":
+                                sprite = SpriteAtlas.Sprites[node.InnerText];
+                                break;
+                            case "hoverSprite":
+                                hoverSprite = SpriteAtlas.Sprites[node.InnerText];
+                                break;
+                            case "command":
+                                commands = new Command[]
+                                {
+                                    new Command()
+                                    {
+                                        type = (CommandType)System.Enum.Parse(typeof(CommandType), node.InnerText)
+                                    }
+                                };
+                                break;
+                        }
+                    }
+                    Logger.Log("\tLoaded button");
+                }
+            }
+            catch
+            {
+                Logger.Log($"Wrong XML template for {xmlNode.Name}");
+            }
         }
 
         public void Draw(Vector2f position, float scale, RenderWindow win)
